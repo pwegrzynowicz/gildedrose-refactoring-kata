@@ -16,10 +16,12 @@ std::ostream& operator<< (::std::ostream& stream, Item const& item) {
     return stream;
 }
 
-static const char *const BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
-static const char *const REGULAR = "Foo";
-static const char *const BRIE = "Aged Brie";
-static const char *const SULFURAS = "Sulfuras, Hand of Ragnaros";
+namespace {
+    static const char *const BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+    static const char *const REGULAR = "Foo";
+    static const char *const BRIE = "Aged Brie";
+    static const char *const SULFURAS = "Sulfuras, Hand of Ragnaros";
+}
 
 TEST(UpdateRegularItem, givenSellInIsPositive_shouldDecreaseSellInBy1AndQualityBy1) {
     // given
