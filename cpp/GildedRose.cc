@@ -9,56 +9,58 @@ namespace {
 
     bool hasExpired(const Item &item) { return item.sellIn < 0; }
 
+    void increaseQuality(Item &item);
+
+    void decreaseQuality(Item &item);
+
     void updateExpired(Item &item) {
         if (isBrie(item)) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
-            }
+            increaseQuality(item);
         } else if (isBackstagePass(item)) {
             item.quality = 0;
         } else if (isSulfurus(item)) {
             return;
         } else {
-            if (item.quality > 0) {
-                item.quality = item.quality - 1;
-            }
+            decreaseQuality(item);
         }
+    }
 
+    void decreaseQuality(Item &item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
+        }
+    }
+
+    void increaseQuality(Item &item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
+        }
     }
 
     void updateSellIn(Item &item) {
-        if (item.name != "Sulfuras, Hand of Ragnaros") {
-            item.sellIn = item.sellIn - 1;
-        }
+        if (isSulfurus(item)) return;
+        item.sellIn = item.sellIn - 1;
     }
+
+    bool isVeryCloseToConcert(const Item &item) { return item.sellIn < 6; }
+
+    bool isCloseToConcert(const Item &item) { return item.sellIn < 11; }
 
     void updateQuality(Item &item) {
         if (isBrie(item)) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
-            }
+            increaseQuality(item);
         } else if (isBackstagePass(item)) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
+            increaseQuality(item);
+            if (isCloseToConcert(item)) {
+                increaseQuality(item);
             }
-
-            if (item.sellIn < 11) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
-            }
-
-            if (item.sellIn < 6) {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
+            if (isVeryCloseToConcert(item)) {
+                increaseQuality(item);
             }
         } else if (isSulfurus(item)) {
             return;
         } else {
-            if (item.quality > 0) {
-                item.quality = item.quality - 1;
-            }
+            decreaseQuality(item);
         }
     }
 
