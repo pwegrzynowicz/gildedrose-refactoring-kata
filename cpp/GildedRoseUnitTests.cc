@@ -17,10 +17,10 @@ std::ostream& operator<< (::std::ostream& stream, Item const& item) {
 }
 
 namespace {
-    static const char *const BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
-    static const char *const REGULAR = "Foo";
-    static const char *const BRIE = "Aged Brie";
-    static const char *const SULFURAS = "Sulfuras, Hand of Ragnaros";
+    const char *const BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert";
+    const char *const REGULAR = "Foo";
+    const char *const BRIE = "Aged Brie";
+    const char *const SULFURAS = "Sulfuras, Hand of Ragnaros";
 }
 
 TEST(UpdateRegularItem, givenSellInIsPositive_shouldDecreaseSellInBy1AndQualityBy1) {
@@ -120,6 +120,12 @@ TEST(UpdateAgedBrie, givenQualityIs50_shouldNotIncreaseQuality) {
 
     // then
     EXPECT_EQ(app.items[0], Item(BRIE, 4, 50));
+}
+
+TEST(UpdateAgedBrie, testBool) {
+    // given
+    GildedRose app(true);
+
 }
 
 TEST(UpdateAgedBrie, givenQualityIs49AndSellInIs0_shouldCapQualityTo50) {

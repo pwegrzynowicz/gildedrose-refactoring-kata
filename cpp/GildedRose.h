@@ -1,3 +1,6 @@
+#ifndef CPP_GILDEDROSE_H
+#define CPP_GILDEDROSE_H
+
 #include <string>
 #include <vector>
 
@@ -19,7 +22,11 @@ public:
     explicit GildedRose(::std::vector<Item> && items);
     explicit GildedRose(::std::vector<Item> const& items);
 
+    explicit GildedRose(int x) {}
+
     void updateQuality();
+
 
 };
 
+#endif
