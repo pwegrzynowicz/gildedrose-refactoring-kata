@@ -4,28 +4,28 @@
 
 #include "CategorizedItem.h"
 
-void RegularItem::resetQuality() {
+void BasicItem::resetQuality() {
     item.quality = 0;
 }
 
-void RegularItem::increaseQuality() {
+void BasicItem::increaseQuality() {
     if (item.quality < 50) {
         item.quality++;
     }
 }
 
-void RegularItem::decreaseQuality() {
+void BasicItem::decreaseQuality() {
     if (item.quality > 0) {
         item.quality--;
     }
 }
 
-bool RegularItem::hasExpired() {
+bool BasicItem::hasExpired() {
     return item.sellIn < 0;
 }
 
 // Template Method
-void RegularItem::updateItem() {
+void BasicItem::updateItem() {
     updateQuality();
     updateSellIn();
     if (hasExpired()) {
@@ -33,12 +33,13 @@ void RegularItem::updateItem() {
     }
 }
 
-void RegularItem::updateQuality() {
-    decreaseQuality();
+void BasicItem::updateSellIn() {
+    item.sellIn--;
 }
 
-void RegularItem::updateSellIn() {
-    item.sellIn--;
+
+void RegularItem::updateQuality() {
+    decreaseQuality();
 }
 
 void RegularItem::updateExpired() {
@@ -60,13 +61,11 @@ void BackstagePassItem::updateExpired() {
 }
 
 bool BackstagePassItem::isCloseToConcert() {
-    static const int HOT_PERIOD_IN_DAYS = 6;
-    return item.sellIn < HOT_PERIOD_IN_DAYS;
+    return item.sellIn < 6;
 }
 
 bool BackstagePassItem::isVeryCloseToConcert() {
-    static const int VERY_HOT_PERIOD_IN_DAYS = 11;
-    return item.sellIn < VERY_HOT_PERIOD_IN_DAYS;
+    return item.sellIn < 11;
 }
 
 void AgedCheeseItem::updateQuality() {

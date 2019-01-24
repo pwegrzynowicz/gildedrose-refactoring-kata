@@ -15,8 +15,6 @@ protected:
     explicit CategorizedItem(Item &item) : item(item) {}
 
 public:
-    using unique_ptr = ::std::unique_ptr<CategorizedItem>;
-
     virtual ~CategorizedItem() = default;
 
     virtual void updateItem() = 0;
@@ -29,7 +27,7 @@ public:
     void updateItem() override {}
 };
 
-class RegularItem : public CategorizedItem {
+class BasicItem : public CategorizedItem {
 protected:
     void resetQuality();
     void increaseQuality();
@@ -37,32 +35,41 @@ protected:
 
     bool hasExpired();
 
-    virtual void updateQuality();
+    virtual void updateQuality() = 0;
     virtual void updateSellIn();
-    virtual void updateExpired();
+    virtual void updateExpired() = 0;
+
+    explicit BasicItem(Item &item) : CategorizedItem(item) {}
 
 public:
-    explicit RegularItem(Item &item) : CategorizedItem(item) {}
-
     void updateItem() override;
 };
 
-class BackstagePassItem : public RegularItem {
+class RegularItem : public BasicItem {
+    void updateQuality() override;
+    void updateExpired() override;
+
+public:
+    explicit RegularItem(Item &item) : BasicItem(item) {}
+};
+
+class BackstagePassItem : public BasicItem {
     bool isCloseToConcert();
     bool isVeryCloseToConcert();
 
     void updateQuality() override;
     void updateExpired() override;
+
 public:
-    explicit BackstagePassItem(Item &item) : RegularItem(item) {}
+    explicit BackstagePassItem(Item &item) : BasicItem(item) {}
 };
 
-class AgedCheeseItem : public RegularItem {
+class AgedCheeseItem : public BasicItem {
     void updateQuality() override;
     void updateExpired() override;
 
 public:
-    explicit AgedCheeseItem(Item &item) : RegularItem(item) {}
+    explicit AgedCheeseItem(Item &item) : BasicItem(item) {}
 };
 
 

@@ -4,13 +4,13 @@
 #include "CategorizedItem.h"
 
 namespace {
-    bool isBackstagePass(const Item &item) { return item.name == "Backstage passes to a TAFKAL80ETC concert"; }
+    bool isBackstagePass(Item const &item) { return item.name == "Backstage passes to a TAFKAL80ETC concert"; }
 
-    bool isBrie(const Item &item) { return item.name == "Aged Brie"; }
+    bool isBrie(Item const &item) { return item.name == "Aged Brie"; }
 
-    bool isSulfurus(const Item &item) { return item.name == "Sulfuras, Hand of Ragnaros"; }
+    bool isSulfurus(Item const &item) { return item.name == "Sulfuras, Hand of Ragnaros"; }
 
-    CategorizedItem::unique_ptr categorize(Item &item) {
+    ::std::unique_ptr<CategorizedItem> categorize(Item &item) {
         if (isBrie(item)) {
             return ::std::make_unique<AgedCheeseItem>(item);
         } else if (isSulfurus(item)) {
@@ -28,7 +28,7 @@ GildedRose::GildedRose(::std::vector<Item> &&items) : items(::std::move(items)) 
 
 void GildedRose::updateQuality() {
     for (auto &item : items) {
-        CategorizedItem::unique_ptr categorized = categorize(item);
+        ::std::unique_ptr<CategorizedItem> categorized = categorize(item);
         categorized->updateItem();
     }
 }
