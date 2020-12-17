@@ -48,17 +48,15 @@ void GildedRose::updateQuality()
                 --items[i].quality;
             }
 
-            if (items[i].name != "Aged Brie")
+            if (items[i].name == "Backstage passes to a TAFKAL80ETC concert")
             {
-                if (items[i].name == "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    items[i].quality=0;
-                }
+                items[i].quality=0;
             }
-            else if (items[i].quality < 50)
+            
+            if (items[i].name == "Aged Brie" && items[i].quality < 50)
             {
                 ++items[i].quality;
-            }
+            } 
         }
     }
 }
