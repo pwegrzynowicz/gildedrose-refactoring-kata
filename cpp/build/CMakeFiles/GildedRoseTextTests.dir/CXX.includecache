@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/paro/git/gildedrose-refactoring-kata/cpp/GildedRose.cc
+GildedRose.h
+/home/paro/git/gildedrose-refactoring-kata/cpp/GildedRose.h
+
+/home/paro/git/gildedrose-refactoring-kata/cpp/GildedRose.h
+string
+-
+vector
+-
+

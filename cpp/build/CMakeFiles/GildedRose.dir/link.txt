@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/GildedRose.dir/GildedRose.cc.o CMakeFiles/GildedRose.dir/GildedRoseUnitTests.cc.o  -o GildedRose googletest-prefix/src/googletest-build/lib/libgtest_main.a googletest-prefix/src/googletest-build/lib/libgtest.a googletest-prefix/src/googletest-build/lib/libgmock_main.a googletest-prefix/src/googletest-build/lib/libgmock.a -lpthread 
