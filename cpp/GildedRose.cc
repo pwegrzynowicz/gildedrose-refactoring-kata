@@ -26,14 +26,11 @@ void GildedRose::updateQuality()
         {
             ++items[i].quality;
 
-            if (items[i].name == b)
+            if (items[i].name == b && items[i].sellIn < 11)
             {
-                if (items[i].sellIn < 11)
-                {
-                    ++items[i].quality;
-                }
+                ++items[i].quality;
 
-                if (items[i].sellIn < 6)
+                 if (items[i].sellIn < 6)
                 {
                     ++items[i].quality;
                 }
