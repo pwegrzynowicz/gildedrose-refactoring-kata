@@ -22,23 +22,20 @@ void GildedRose::updateQuality()
                 --items[i].quality;
             }
         }
-        else
+        else if (items[i].quality < 50)
         {
-            if (items[i].quality < 50)
+            ++items[i].quality;
+
+            if (items[i].name == b)
             {
-                ++items[i].quality;
-
-                if (items[i].name == b)
+                if (items[i].sellIn < 11)
                 {
-                    if (items[i].sellIn < 11)
-                    {
-                        ++items[i].quality;
-                    }
+                    ++items[i].quality;
+                }
 
-                    if (items[i].sellIn < 6)
-                    {
-                        ++items[i].quality;
-                    }
+                if (items[i].sellIn < 6)
+                {
+                    ++items[i].quality;
                 }
             }
         }
