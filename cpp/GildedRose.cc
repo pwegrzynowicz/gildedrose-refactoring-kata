@@ -30,7 +30,7 @@ void GildedRose::updateQuality()
             {
                 ++items[i].quality;
 
-                 if (items[i].sellIn < 6)
+                if (items[i].sellIn < 6)
                 {
                     ++items[i].quality;
                 }
@@ -46,16 +46,14 @@ void GildedRose::updateQuality()
         {
             if (items[i].name != a)
             {
-                if (items[i].name != b)
+                if (items[i].name == b)
                 {
-                    if (items[i].quality > 0 && items[i].name != c)
-                    {
-                      --items[i].quality;
-                    }
+                    items[i].quality=0;
+
                 }
                 else
                 {
-                    items[i].quality=0;
+                    --items[i].quality;
                 }
             }
             else if (items[i].quality < 50)
