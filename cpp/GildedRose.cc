@@ -18,9 +18,7 @@ void GildedRose::updateQuality()
                 --items[i].quality;
             }
         }
-        else
-        {
-            if (items[i].quality < 50)
+        else if (items[i].quality < 50)
             {
                 ++items[i].quality;
 
@@ -32,8 +30,7 @@ void GildedRose::updateQuality()
                         ++items[i].quality; 
                     }
                 }
-            }
-        }
+            }   
 
         if (items[i].name != "Sulfuras, Hand of Ragnaros")
         {
