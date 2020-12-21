@@ -16,7 +16,6 @@ void GildedRose::updateQuality()
 
             if (items[i].sellIn < 0)
             {
-                if (items[i].name != "Aged Brie")
                 {
                     if (items[i].quality > 0)
                     {
@@ -26,10 +25,6 @@ void GildedRose::updateQuality()
                     {
                         items[i].quality=0;
                     }
-                }
-                else if (items[i].quality < 50)
-                {
-                    ++items[i].quality;
                 }
             }
 
@@ -55,6 +50,10 @@ void GildedRose::updateQuality()
         {
             --items[i].sellIn;
         }
+        if (items[i].name == "Aged Brie" && items[i].quality < 50)
+        {
+        ++items[i].quality;
+        
 
 
     }
