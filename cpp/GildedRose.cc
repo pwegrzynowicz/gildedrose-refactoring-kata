@@ -20,16 +20,15 @@ void GildedRose::updateQuality()
             if (items[i].quality < 50)
             {
                 ++items[i].quality;
-
-                if (items[i].name == "Backstage passes to a TAFKAL80ETC concert" && items[i].sellIn < 11 && items[i].quality < 50)
+                
+                 if (items[i].name == "Backstage passes to a TAFKAL80ETC concert" && items[i].sellIn < 6 && items[i].quality < 50)
+                 {
+                     ++items[i].quality;
+                 }
+                else if (items[i].name == "Backstage passes to a TAFKAL80ETC concert" && items[i].sellIn < 11 && items[i].quality < 50)
                 {
                     
-                            ++items[i].quality;
-                    
-                    if (items[i].sellIn < 6 && items[i].quality < 50)
-                    {
-                            ++items[i].quality;
-                    }
+                    ++items[i].quality;
                 }
             }
         }
