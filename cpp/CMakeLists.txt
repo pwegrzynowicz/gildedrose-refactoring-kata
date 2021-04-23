@@ -24,10 +24,8 @@ set(SOURCE_FILES
     ${GILDED_ROSE_SOURCE_FILES}
     ${GILDED_ROSE_TEXT_TESTS_SOURCE_FILES})
 
-
-
-add_executable(GildedRose ${GILDED_ROSE_SOURCE_FILES})
-target_link_libraries(GildedRose ${GTEST_MAIN_LIBRARY}
+add_executable(GildedRoseUnitTests ${GILDED_ROSE_SOURCE_FILES})
+target_link_libraries(GildedRoseUnitTests ${GTEST_MAIN_LIBRARY}
                               ${GTEST_LIBRARY}
                               ${GMOCK_MAIN_LIBRARY}
                               ${GMOCK_LIBRARY}
