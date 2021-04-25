@@ -4,29 +4,32 @@
 #include <string>
 #include <vector>
 
-class Item
-{
+class Item {
 public:
     ::std::string name;
     int sellIn;
     int quality;
-    Item(::std::string name, int sellIn, int quality) : name(::std::move(name)), sellIn(sellIn), quality(quality)
-    {}
+
+    Item(::std::string _name, int _sellIn, int _quality);
+
+    void resetQuality();
+
+    void increaseQuality();
+
+    void decreaseQuality();
+
+    bool hasExpired() const;
 };
 
-class GildedRose
-{
-
+class GildedRose {
 public:
     ::std::vector<Item> items;
-    explicit GildedRose(::std::vector<Item> && items);
+
+    explicit GildedRose(::std::vector<Item>&& items);
+
     explicit GildedRose(::std::vector<Item> const& items);
 
-    explicit GildedRose(int x) {}
-
     void updateQuality();
-
-
 };
 
 #endif

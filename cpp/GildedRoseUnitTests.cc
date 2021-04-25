@@ -122,12 +122,6 @@ TEST(UpdateAgedBrie, givenQualityIs50_shouldNotIncreaseQuality) {
     EXPECT_EQ(app.items[0], Item(BRIE, 4, 50));
 }
 
-TEST(UpdateAgedBrie, testBool) {
-    // given
-    GildedRose app(true);
-
-}
-
 TEST(UpdateAgedBrie, givenQualityIs49AndSellInIs0_shouldCapQualityTo50) {
     // given
     auto item = Item(BRIE, 0, 49);
