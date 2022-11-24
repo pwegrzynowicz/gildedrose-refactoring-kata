@@ -1,39 +1,30 @@
-cmake_minimum_required(VERSION 3.9)
-project(cpp)
+cmake_minimum_required(VERSION 3.13)
 
-set(CMAKE_CXX_STANDARD 14)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_EXTENSIONS ON)
+project(GildedRose)
+set(CMAKE_CXX_STANDARD 20)
 
-set(LIBRARY_OUTPUT_PATH build/)
-set(BINARY_OUTPUT_PATH build/)
+#get googletest
+include(FetchContent)
+FetchContent_Declare(googletest
+  GIT_REPOSITORY https://github.com/google/googletest
+  GIT_TAG release-1.11.0)
+FetchContent_GetProperties(googletest)
 
-include(External_GTest.cmake)
+if(NOT googletest_POPULATED)
+  FetchContent_Populate(googletest)
+  add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BUILD_DIR})
+endif()
 
-set(GILDED_ROSE_SOURCE_FILES
+add_library(GildedRoseLibrary STATIC
     GildedRose.cc
     GildedRose.h
-    GildedRoseUnitTests.cc)
+)
 
-set(GILDED_ROSE_TEXT_TESTS_SOURCE_FILES
-    GildedRose.cc
-    GildedRose.h
-    GildedRoseTextTests.cc)
+add_executable(GildedRoseTextTests GildedRoseTextTests.cc)
+target_link_libraries(GildedRoseTextTests GildedRoseLibrary)
 
-set(SOURCE_FILES
-    ${GILDED_ROSE_SOURCE_FILES}
-    ${GILDED_ROSE_TEXT_TESTS_SOURCE_FILES})
+add_executable(GildedRoseUnitTests
+    GildedRoseUnitTests.cc
+)
 
-add_executable(GildedRoseUnitTests ${GILDED_ROSE_SOURCE_FILES})
-target_link_libraries(GildedRoseUnitTests ${GTEST_MAIN_LIBRARY}
-                              ${GTEST_LIBRARY}
-                              ${GMOCK_MAIN_LIBRARY}
-                              ${GMOCK_LIBRARY}
-                              ${GTEST_BOTH_LIBRARIES})
-
-add_executable(GildedRoseTextTests ${GILDED_ROSE_TEXT_TESTS_SOURCE_FILES})
-target_link_libraries(GildedRoseTextTests ${GTEST_BOTH_LIBRARIES}
-                                          ${GTEST_MAIN_LIBRARY}
-                                          ${GTEST_LIBRARY}
-                                          ${GMOCK_MAIN_LIBRARY}
-                                          ${GMOCK_LIBRARY})
+target_link_libraries(GildedRoseUnitTests GildedRoseLibrary gtest_main gmock_main)
