@@ -18,6 +18,8 @@ endif()
 add_library(GildedRoseLibrary STATIC
     GildedRose.cc
     GildedRose.h
+    ItemStrategy.cpp
+    ItemStrategy.h
 )
 
 add_executable(GildedRoseTextTests GildedRoseTextTests.cc)
